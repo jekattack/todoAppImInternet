@@ -1,6 +1,5 @@
 import Todo from "./model";
 import axios, {AxiosResponse} from "axios";
-import {Runtime} from "inspector";
 
 export default function getRequest(){
     return (
