@@ -28,7 +28,7 @@ export default function EditPage(){
 
     const sendPutRequest = (e: any) => {
         e.preventDefault();
-        putRequest('/api/kanban', {
+        putRequest('', {
             task: newTask,
             description: newDescription,
             status: todoToEdit?.status,
