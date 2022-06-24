@@ -1,0 +1,15 @@
+.edit-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
+.edit-form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 25% 25% 25% 25% 25% 25%;
+    margin: 30px;
+}
+
+.edit-spacer {
+    visibility: hidden;
+}

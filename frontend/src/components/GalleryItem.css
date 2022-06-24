@@ -1,0 +1,25 @@
+.gallery-item-wrapper{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin: 5px;
+    align-items: center;
+}
+
+.gallery-item-border-wrapper{
+    border-color: black;
+    border-width: 1px;
+    border-style: dashed;
+}
+
+.todo-info-wrapper{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+
+.todo-button-wrapper{
+    display: flex;
+    justify-content: center;
+}

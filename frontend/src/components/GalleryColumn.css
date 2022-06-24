@@ -1,0 +1,10 @@
+.gallery-column-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.single-column-wrapper{
+    justify-content: space-evenly;
+    margin: 30px;
+}
