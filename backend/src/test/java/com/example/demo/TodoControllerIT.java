@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.mongodb.client.MongoDatabase;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,9 @@ class TodoControllerIT {
 
     @Test
     void shouldAddAndRemoveTodo(){
-        Todo todo = new Todo(TodoStatus.OPEN, "Wäsche waschen", "Kleidung säubern");
+
+
+        Todo todo = new Todo("123", TodoStatus.OPEN, "Wäsche waschen", "Kleidung säubern");
         restTemplate.postForEntity("/api/kanban", todo, Void.class);
 
 
@@ -36,9 +39,9 @@ class TodoControllerIT {
     @Test
     void shouldTestWholeApp() {
         //given
-        Todo task1 = new Todo(TodoStatus.OPEN, "Holzhacken","Im Wald");
+        Todo task1 = new Todo("1234", TodoStatus.OPEN, "Holzhacken","Im Wald");
         restTemplate.postForEntity("/api/kanban",task1,Void.class);
-        Todo task2 = new Todo(TodoStatus.IN_PROGRESS, "In den Wald fahren","Mit dem Pferdewagen");
+        Todo task2 = new Todo("1235", TodoStatus.IN_PROGRESS, "In den Wald fahren","Mit dem Pferdewagen");
         restTemplate.postForEntity("/api/kanban",task2,Void.class);
 
         ResponseEntity<Todo[]> getResponse = restTemplate.getForEntity("/api/kanban",Todo[].class);

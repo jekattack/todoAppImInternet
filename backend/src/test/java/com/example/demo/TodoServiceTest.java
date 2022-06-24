@@ -18,32 +18,32 @@ class TodoServiceTest {
     @Test
     void shouldAddTask(){
         //Given
-        Todo testTodo = new Todo(TodoStatus.OPEN, "Schuhe kaufen", "Beim Schuhladen");
-        TodoRepo testTodoRepo = Mockito.mock(TodoRepo.class);
+        Todo testTodo = new Todo("1236", TodoStatus.OPEN, "Schuhe kaufen", "Beim Schuhladen");
+        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
 
-        TodoService testTodoService = new TodoService(testTodoRepo);
+        TodoService testTodoService = new TodoService(testTodoRepository);
 
         //When
         testTodoService.createTodo(testTodo);
 
         //Then
-        Mockito.verify(testTodoRepo).create(testTodo);
+        Mockito.verify(testTodoRepository).save(testTodo);
 
     }
 
     @Test
     void shouldReturnAllTodos(){
         //Given
-        Todo testTodo1 = new Todo(TodoStatus.DONE, "Schuhe kaufen", "Beim Schuhladen");
-        Todo testTodo2 = new Todo(TodoStatus.IN_PROGRESS, "Schuhe benutzen", "Im Park");
-        Todo testTodo3 = new Todo(TodoStatus.OPEN, "Schuhe schmeißen", "Beim Schuhweitwurf");
+        Todo testTodo1 = new Todo("1236", TodoStatus.DONE, "Schuhe kaufen", "Beim Schuhladen");
+        Todo testTodo2 = new Todo("1237", TodoStatus.IN_PROGRESS, "Schuhe benutzen", "Im Park");
+        Todo testTodo3 = new Todo("1238", TodoStatus.OPEN, "Schuhe schmeißen", "Beim Schuhweitwurf");
 
-        TodoRepo testTodoRepo = Mockito.mock(TodoRepo.class);
+        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
 
-        TodoService testTodoService = new TodoService(testTodoRepo);
+        TodoService testTodoService = new TodoService(testTodoRepository);
 
         //When
-        Mockito.when(testTodoRepo.list()).thenReturn(List.of(testTodo1,testTodo2,testTodo3));
+        Mockito.when(testTodoRepository.findAll()).thenReturn(List.of(testTodo1,testTodo2,testTodo3));
 
         //Then
         Assertions.assertThat(testTodoService.listTodos()).contains(testTodo1,testTodo2,testTodo3);
@@ -54,17 +54,17 @@ class TodoServiceTest {
     @Test
     void shouldEditTodo(){
         //Given
-        Todo testTodo1 = new Todo(TodoStatus.DONE, "Schuhe kaufen", "Beim Schuhladen");
+        Todo testTodo1 = new Todo("1239", TodoStatus.DONE, "Schuhe kaufen", "Beim Schuhladen");
 
-        TodoRepo testTodoRepo = Mockito.mock(TodoRepo.class);
+        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
 
-        TodoService testTodoService = new TodoService(testTodoRepo);
+        TodoService testTodoService = new TodoService(testTodoRepository);
 
         //When
         testTodoService.editTodo(testTodo1);
 
         //Then
-        verify(testTodoRepo).edit(testTodo1);
+        verify(testTodoRepository).save(testTodo1);
 
     }
 

@@ -4,48 +4,46 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class TodoService {
 
-    private final TodoRepo todoRepo;
+    private final TodoRepository todoRepository;
 
     public List<Todo> listTodos(){
-        return todoRepo.list();
+        return todoRepository.findAll();
     }
 
     public Todo getTodo(String id){
-        return todoRepo.get(id).orElseThrow();
+        return todoRepository.findTodoById(id);
     }
 
     public void createTodo(Todo todo) {
         if (!"".equals(todo.getTask())) {
-            todoRepo.create(todo);
+            todoRepository.save(todo);
         } else {
             throw new Error(String.valueOf(HttpStatus.BAD_REQUEST));
         }
     }
 
     public void editTodo(Todo todo){
-        todoRepo.edit(todo);
+        todoRepository.save(todo);
     }
 
     public void delete(String id){
-        todoRepo.delete(id);
+        todoRepository.deleteById(id);
     }
 
     public void changeNext(Todo todo) {
         todo.setStatus(todo.getStatus().progressNext());
-        todoRepo.edit(todo);
+        todoRepository.save(todo);
     }
 
     public void changePrev(Todo todo) {
         todo.setStatus(todo.getStatus().progressPrev());
-        todoRepo.edit(todo);
+        todoRepository.save(todo);
     }
 
 

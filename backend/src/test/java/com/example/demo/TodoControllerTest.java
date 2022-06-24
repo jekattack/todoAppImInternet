@@ -22,7 +22,7 @@ class TodoControllerTest {
     @Test
     void shouldReturnGivenTodo(){
         //Given
-        Todo todo = new Todo(TodoStatus.IN_PROGRESS, "Wäsche waschen", "Kleidung säubern");
+        Todo todo = new Todo("1236", TodoStatus.IN_PROGRESS, "Wäsche waschen", "Kleidung säubern");
         when(testTodoService.getTodo(todo.getId())).thenReturn(todo);
 
         TodoController todoController = new TodoController(testTodoService);
@@ -37,7 +37,7 @@ class TodoControllerTest {
     @Test
     void shouldRunAddTodo(){
         //Given
-        Todo todo = new Todo(TodoStatus.IN_PROGRESS, "Wäsche waschen", "Kleidung säubern");
+        Todo todo = new Todo("1236", TodoStatus.IN_PROGRESS, "Wäsche waschen", "Kleidung säubern");
 
         TodoController todoController = new TodoController(testTodoService);
 
@@ -51,7 +51,7 @@ class TodoControllerTest {
     @Test
     void shouldChangeStatusOfTodo(){
         //Given
-        Todo todo = new Todo(TodoStatus.IN_PROGRESS, "Wäsche waschen", "Kleidung säubern");
+        Todo todo = new Todo("1236", TodoStatus.IN_PROGRESS, "Wäsche waschen", "Kleidung säubern");
 
         TodoController todoController = new TodoController(testTodoService);
 
