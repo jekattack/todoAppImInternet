@@ -6,7 +6,7 @@ import {MemoryRouter, Router} from "react-router-dom";
 test("Testing buttons and triggered requests", async () => {
 
     jest.spyOn(axios, 'put').mockImplementation((url: string, data: any) => {
-        expect(url).toEqual('http://localhost:8080/api/kanban/next');
+        expect(url).toEqual('/api/kanban/next');
         expect(data).toEqual({id: "9000", task: "Merge-Request abschicken", description: "An Andre", status: "OPEN"});
         return Promise.resolve({});
     })
