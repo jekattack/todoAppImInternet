@@ -52,7 +52,7 @@
 
     <build>
         <finalName>
-            template <!-- Change to your App-Name -->
+            todoAppImInternet
         </finalName>
         <plugins>
             <plugin>
