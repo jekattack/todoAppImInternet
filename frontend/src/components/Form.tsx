@@ -15,11 +15,15 @@ export default function Form(props: FormProps) {
     useEffect(() => {localStorage.setItem("instanceTodo", newTodo)}, [newTodo])
     useEffect(() => {localStorage.setItem("instanceDescription", newDescription)}, [newDescription])
 
+
     const sendPostRequest = (e: any) => {
         e.preventDefault();
+
+        const jwt = localStorage.getItem('jwt');
+
         postRequest({
             task: newTodo,
-            description: newDescription
+            description: newDescription,
         })
             .then(() => props.onTaskCreation())
             .then(() => {

@@ -1,9 +1,11 @@
 package com.example.demo.todo;
 
+import com.example.demo.security.JWTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -12,8 +14,8 @@ public class TodoService {
 
     private final TodoRepository todoRepository;
 
-    public List<Todo> listTodos(){
-        return todoRepository.findAll();
+    public List<Todo> listTodos(String userid){
+        return todoRepository.findAllByUserid(userid);
     }
 
     public Todo getTodo(String id){
@@ -45,6 +47,9 @@ public class TodoService {
         todo.setStatus(todo.getStatus().progressPrev());
         todoRepository.save(todo);
     }
+
+
+
 
 
 }

@@ -9,5 +9,4 @@ public interface TodoUserRepo extends MongoRepository<TodoUser, String> {
 
     Optional<TodoUser> findByUsername(String username);
 
-
 }

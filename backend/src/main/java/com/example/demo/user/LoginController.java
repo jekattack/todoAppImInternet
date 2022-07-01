@@ -26,11 +26,12 @@ public class LoginController {
     public ResponseEntity<LoginResponse> login(@RequestBody LoginData loginData){
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginData.getUsername(), loginData.getPassword()));
-            HashMap<String, Object> securityLevel = new HashMap<>();
-
+            HashMap<String, Object> additionalTokenClaims = new HashMap<>();
             TodoUser user = todoUserService.findByName(loginData.getUsername()).orElseThrow();
 
-            return ResponseEntity.ok(new LoginResponse(jwtService.createToken(securityLevel, loginData.getUsername())));
+            additionalTokenClaims.putIfAbsent("userid", user.getId());
+
+            return ResponseEntity.ok(new LoginResponse(jwtService.createToken(additionalTokenClaims, loginData.getUsername())));
 
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
