@@ -1,5 +1,6 @@
 package com.example.demo.todo;
 
+import java.security.Principal;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
@@ -16,14 +17,15 @@ public class TodoController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public List<Todo> getAllTodos() {
-        return todoService.listTodos();
+    public List<Todo> getAllTodos(Principal principal) {
+        System.out.println(principal);;
+        return todoService.listTodos(principal);
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void createTodo(@RequestBody Todo todo){
-        todoService.createTodo(todo);
+    public void createTodo(@RequestBody Todo todo, Principal principal){
+        todoService.createTodo(todo, principal);
     }
 
     @GetMapping("/{id}")

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -12,15 +13,16 @@ public class TodoService {
 
     private final TodoRepository todoRepository;
 
-    public List<Todo> listTodos(){
-        return todoRepository.findAll();
+    public List<Todo> listTodos(Principal principal){
+        return todoRepository.findAllByUserid(principal.getName());
     }
 
     public Todo getTodo(String id){
         return todoRepository.findTodoById(id);
     }
 
-    public void createTodo(Todo todo) {
+    public void createTodo(Todo todo, Principal principal) {
+        todo.setUserid(principal.getName());
         if (!"".equals(todo.getTask())) {
             todoRepository.save(todo);
         } else {

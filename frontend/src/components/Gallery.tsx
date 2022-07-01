@@ -11,13 +11,13 @@ export default function Gallery() {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [errorMsg, setErrorMsg] = useState<String>("");
 
-    useEffect(() => {
-        fetchTasks()
-    }, []);
-
     const openTodos = todos.filter(todo => todo.status === "OPEN")
     const inProgressTodos = todos.filter(todo => todo.status === "IN_PROGRESS")
     const doneTodos = todos.filter(todo => todo.status === "DONE")
+
+    useEffect(() => {
+        fetchTasks()
+    }, []);
 
     const fetchTasks = () => {
         getRequest().then((todos: Todo[]) => {

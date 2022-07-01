@@ -17,4 +17,5 @@ public class Todo {
     private TodoStatus status = TodoStatus.OPEN;
     private String task;
     private String description;
+    private String userid;
 }
