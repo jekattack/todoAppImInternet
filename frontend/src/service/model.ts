@@ -4,3 +4,7 @@ export default interface Todo {
     task: string;
     description: string;
 }
+
+export interface LoginResponse {
+    token: string;
+}

@@ -1,14 +1,10 @@
-package com.example.demo;
+package com.example.demo.todo;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 @CrossOrigin
 @RestController

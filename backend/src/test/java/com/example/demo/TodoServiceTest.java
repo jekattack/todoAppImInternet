@@ -1,16 +1,16 @@
 package com.example.demo;
 
+import com.example.demo.todo.Todo;
+import com.example.demo.todo.TodoRepository;
+import com.example.demo.todo.TodoService;
+import com.example.demo.todo.TodoStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import javax.swing.text.html.Option;
 import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 
 class TodoServiceTest {

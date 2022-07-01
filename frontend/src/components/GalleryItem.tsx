@@ -45,7 +45,7 @@ export default function GalleryItem(props: GalleryItemProps) {
                         (props.todo.status !== "OPEN") &&
                         <button onClick={sendPutPrev} data-testid={"prev-button"}>Prev</button>
                     }
-                        <button onClick={()=>nav(`/${props.todo.id}`)} data-testid={"edit-button"}>Edit</button>
+                        <button onClick={()=>nav(`/kanban/${props.todo.id}`)} data-testid={"edit-button"}>Edit</button>
                     {
                         (props.todo.status !== "DONE") &&
                         <button onClick={sendPutNext} data-testid={"next-button"}>Next</button>

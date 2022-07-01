@@ -1,7 +1,6 @@
-package com.example.demo;
+package com.example.demo.todo;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface TodoRepository extends MongoRepository<Todo, String> {
 

@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import com.example.demo.todo.Todo;
+import com.example.demo.todo.TodoController;
+import com.example.demo.todo.TodoService;
+import com.example.demo.todo.TodoStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
