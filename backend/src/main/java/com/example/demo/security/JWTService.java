@@ -17,7 +17,7 @@ public class JWTService {
 
     private final String secret;
 
-    public JWTService(@Value("${JWT_SECRET:test-secret") String secret) {
+    public JWTService(@Value("${app.jwt.secret}") String secret) {
         this.secret = secret;
     }
 
