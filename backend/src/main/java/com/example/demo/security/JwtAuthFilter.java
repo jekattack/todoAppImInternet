@@ -33,7 +33,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                response.setStatus(401);
            }
         }
-
         filterChain.doFilter(request, response);
     }
 
