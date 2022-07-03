@@ -29,6 +29,7 @@ public class LoginController {
             HashMap<String, Object> securityLevel = new HashMap<>();
 
             TodoUser user = todoUserService.findByName(loginData.getUsername()).orElseThrow();
+            securityLevel.putIfAbsent("role", user.getRole());
 
             return ResponseEntity.ok(new LoginResponse(jwtService.createToken(securityLevel, loginData.getUsername())));
 
