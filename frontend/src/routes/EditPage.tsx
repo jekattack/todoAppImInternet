@@ -15,7 +15,9 @@ export default function EditPage(){
     const [todoToEdit, setTodoToEdit] = useState<Todo>();
 
     useEffect(() => {
-        if(localStorage.getItem('jwt')==null){nav("/")}
+        if(localStorage.getItem('jwt')==null){
+            nav("/")
+        }
     }, [])
 
     useEffect( () => {
@@ -36,7 +38,9 @@ export default function EditPage(){
             description: newDescription,
             status: todoToEdit?.status,
             id: todoToEdit?.id
-        }).then(() => nav('/kanban'));
+        }).then(() => {
+            nav('/kanban')
+        });
     }
     
     return (

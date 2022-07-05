@@ -1,5 +1,5 @@
 import Gallery from "../components/Gallery";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 
 export default function MainPage(){
@@ -7,12 +7,18 @@ export default function MainPage(){
     const nav = useNavigate();
 
     useEffect(() => {
-            if(localStorage.getItem('jwt')==null){nav("/")}
+            if(localStorage.getItem('jwt')==null){
+                backToLogin()
+            }
         }
     , [])
 
     const logout = () => {
         localStorage.clear()
+        backToLogin()
+    }
+
+    const backToLogin = () => {
         nav("/")
     }
 
