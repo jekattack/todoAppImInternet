@@ -8,20 +8,15 @@ export default function MainPage(){
 
     useEffect(() => {
             if(localStorage.getItem('jwt')==null){
-                backToLogin()
+                nav("/")
             }
         }
-    , [])
+    , [nav])
 
     const logout = () => {
         localStorage.clear()
-        backToLogin()
+        nav("/")
     }
-
-    const backToLogin = () => {
-        return nav("/")
-    }
-
 
     return(
         <div>

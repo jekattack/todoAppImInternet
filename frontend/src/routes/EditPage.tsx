@@ -18,7 +18,7 @@ export default function EditPage(){
         if(localStorage.getItem('jwt')==null){
             nav("/")
         }
-    }, [])
+    }, [nav])
 
     useEffect( () => {
         if(id){
