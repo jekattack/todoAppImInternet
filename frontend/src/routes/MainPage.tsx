@@ -19,7 +19,7 @@ export default function MainPage(){
     }
 
     const backToLogin = () => {
-        nav("/")
+        return nav("/")
     }
 
 
