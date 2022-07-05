@@ -15,6 +15,10 @@ export default function EditPage(){
     const [newDescription, setNewDescription] = useState('');
     const [todoToEdit, setTodoToEdit] = useState<Todo>();
 
+    useEffect(() => {
+        if(localStorage.getItem('jwt')==null){nav("/")}
+    }, [])
+
     useEffect( () => {
         if(id){
             getForIdRequest(id)
@@ -33,14 +37,13 @@ export default function EditPage(){
             description: newDescription,
             status: todoToEdit?.status,
             id: todoToEdit?.id
-        }).then(() => nav('/'));
+        }).then(() => nav('/kanban'));
     }
     
     return (
         <div className="edit-wrapper">
            <form onSubmit={sendPutRequest}>
                 <div className="edit-page-wrapper">
-                    <Header />
                     <div className="edit-form-wrapper">
                         <label htmlFor="edit-input">Task:</label>
                         <input type="text" id="edit-input" value={newTask} onChange={ev => setNewTask(ev.target.value)} />

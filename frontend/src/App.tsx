@@ -4,10 +4,12 @@ import MainPage from "./routes/MainPage";
 import EditPage from "./routes/EditPage";
 import LoginPage from "./public/LoginPage";
 import RegisterPage from "./public/RegisterPage";
+import Header from "./components/Header";
 
 function App() {
   return (
       <div>
+          <Header />
           <BrowserRouter>
               <Routes>
                   <Route path="/" element={<LoginPage />} />
