@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import Header from "../components/Header";
 import Todo from "../service/model";
 import {useNavigate, useParams} from "react-router-dom";
 import './EditPage.css';
@@ -40,7 +39,6 @@ export default function EditPage(){
         <div className="edit-wrapper">
            <form onSubmit={sendPutRequest}>
                 <div className="edit-page-wrapper">
-                    <Header />
                     <div className="edit-form-wrapper">
                         <label htmlFor="edit-input">Task:</label>
                         <input type="text" id="edit-input" value={newTask} onChange={ev => setNewTask(ev.target.value)} />
