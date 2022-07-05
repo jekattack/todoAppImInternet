@@ -1,4 +1,3 @@
-import Header from "../components/Header";
 import Gallery from "../components/Gallery";
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
