@@ -12,7 +12,7 @@ export default function GalleryColumn(props: GalleryColumnProps) {
     const components = props.todos.map((t :Todo) => <GalleryItem todo={t} onTaskChange={props.onTaskChange} />);
 
     return (
-        <div>
+        <div key={Math.random()}>
             {components}
         </div>
     );
