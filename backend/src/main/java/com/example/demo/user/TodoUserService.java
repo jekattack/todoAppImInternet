@@ -15,10 +15,15 @@ public class TodoUserService {
 
     public void createUser(TodoUser todoUser) {
         todoUser.setPassword(passwordEncoder.encode(todoUser.getPassword()));
+        todoUser.setRole("user");
         todoUserRepo.save(todoUser);
     }
 
-    public Optional<TodoUser> findByName(String username) {
+    public Optional<TodoUser> findByUsername(String username) {
         return todoUserRepo.findByUsername(username);
+    }
+
+    public Optional<TodoUser> findById(String id) {
+        return todoUserRepo.findById(id);
     }
 }

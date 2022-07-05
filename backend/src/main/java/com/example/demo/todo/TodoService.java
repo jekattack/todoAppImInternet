@@ -13,16 +13,15 @@ public class TodoService {
 
     private final TodoRepository todoRepository;
 
-    public List<Todo> listTodos(Principal principal){
-        return todoRepository.findAllByUserid(principal.getName());
+    public List<Todo> listTodos(String userid){
+        return todoRepository.findAllByUserid(userid);
     }
 
     public Todo getTodo(String id){
         return todoRepository.findTodoById(id);
     }
 
-    public void createTodo(Todo todo, Principal principal) {
-        todo.setUserid(principal.getName());
+    public void createTodo(Todo todo) {
         if (!"".equals(todo.getTask())) {
             todoRepository.save(todo);
         } else {

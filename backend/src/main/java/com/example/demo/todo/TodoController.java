@@ -3,28 +3,36 @@ package com.example.demo.todo;
 import java.security.Principal;
 import java.util.List;
 
+import ch.qos.logback.core.encoder.EchoEncoder;
+import com.example.demo.user.TodoUser;
+import com.example.demo.user.TodoUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/kanban")
 @RequiredArgsConstructor
 public class TodoController {
 
     private final TodoService todoService;
+    private final TodoUserService todoUserService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public List<Todo> getAllTodos(Principal principal) {
-        System.out.println(principal);;
-        return todoService.listTodos(principal);
+        TodoUser user = todoUserService.findByUsername(principal.getName()).orElseThrow();
+        return todoService.listTodos(user.getId());
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public void createTodo(@RequestBody Todo todo, Principal principal){
-        todoService.createTodo(todo, principal);
+        TodoUser user = todoUserService.findByUsername(principal.getName()).orElseThrow();
+        String userid = user.getId();
+        todo.setUserid(userid);
+        todoService.createTodo(todo);
     }
 
     @GetMapping("/{id}")
@@ -32,10 +40,13 @@ public class TodoController {
     public Todo getTodo(@PathVariable String id) {
         return todoService.getTodo(id);
     }
-// Testtest
+
     @PutMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void editTodo(@RequestBody Todo todo) {
+    public void editTodo(@RequestBody Todo todo, Principal principal) {
+        TodoUser user = todoUserService.findByUsername(principal.getName()).orElseThrow();
+        String userid = user.getId();
+        todo.setUserid(userid);
         todoService.editTodo(todo);
     }
 
