@@ -12,6 +12,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 public class Todo {
 
+    public Todo(String task, String description) {
+        this.task = task;
+        this.description = description;
+    }
+
     @Id
     private String id;
     private TodoStatus status = TodoStatus.OPEN;

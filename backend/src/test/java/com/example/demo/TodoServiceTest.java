@@ -15,57 +15,119 @@ import static org.mockito.Mockito.verify;
 
 class TodoServiceTest {
 
-//    @Test
-//    void shouldAddTask(){
-//        //Given
-//        Todo testTodo = new Todo("1236", TodoStatus.OPEN, "Schuhe kaufen", "Beim Schuhladen");
-//        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
-//
-//        TodoService testTodoService = new TodoService(testTodoRepository);
-//
-//        //When
-//        testTodoService.createTodo(testTodo);
-//
-//        //Then
-//        Mockito.verify(testTodoRepository).save(testTodo);
-//
-//    }
-//
-//    @Test
-//    void shouldReturnAllTodos(){
-//        //Given
-//        Todo testTodo1 = new Todo("1236", TodoStatus.DONE, "Schuhe kaufen", "Beim Schuhladen");
-//        Todo testTodo2 = new Todo("1237", TodoStatus.IN_PROGRESS, "Schuhe benutzen", "Im Park");
-//        Todo testTodo3 = new Todo("1238", TodoStatus.OPEN, "Schuhe schmeißen", "Beim Schuhweitwurf");
-//
-//        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
-//
-//        TodoService testTodoService = new TodoService(testTodoRepository);
-//
-//        //When
-//        Mockito.when(testTodoRepository.findAll()).thenReturn(List.of(testTodo1,testTodo2,testTodo3));
-//
-//        //Then
-//        Assertions.assertThat(testTodoService.listTodos()).contains(testTodo1,testTodo2,testTodo3);
-//
-//    }
-//
-//
-//    @Test
-//    void shouldEditTodo(){
-//        //Given
-//        Todo testTodo1 = new Todo("1239", TodoStatus.DONE, "Schuhe kaufen", "Beim Schuhladen");
-//
-//        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
-//
-//        TodoService testTodoService = new TodoService(testTodoRepository);
-//
-//        //When
-//        testTodoService.editTodo(testTodo1);
-//
-//        //Then
-//        verify(testTodoRepository).save(testTodo1);
-//
-//    }
+    @Test
+    void shouldAddTask(){
+        //Given
+        Todo testTodo = new Todo("1236", TodoStatus.OPEN, "Schuhe kaufen", "Beim Schuhladen", "1234567890");
+        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
+
+        TodoService testTodoService = new TodoService(testTodoRepository);
+
+        //When
+        testTodoService.createTodo(testTodo);
+
+        //Then
+        Mockito.verify(testTodoRepository).save(testTodo);
+
+    }
+
+    @Test
+    void shouldReturnAllTodos(){
+        //Given
+        Todo testTodo1 = new Todo("1236", TodoStatus.DONE, "Gemüse kaufen", "Beim Schuhladen", "1");
+
+        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
+        TodoService testTodoService = new TodoService(testTodoRepository);
+
+        //When
+        Mockito.when(testTodoRepository.findAllByUserid("1")).thenReturn(List.of(testTodo1));
+
+        //Then
+        Assertions.assertThat(testTodoService.listTodos("1")).contains(testTodo1);
+    }
+
+    @Test
+    void shouldEditTodo(){
+        //Given
+        Todo testTodo1 = new Todo("1239", TodoStatus.DONE, "Schuhe kaufen", "Beim Schuhladen", "1");
+
+        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
+        TodoService testTodoService = new TodoService(testTodoRepository);
+
+        //When
+        testTodoService.editTodo(testTodo1);
+
+        //Then
+        verify(testTodoRepository).save(testTodo1);
+    }
+
+    //get einzeln
+
+    @Test
+    void shouldReturnOneTodo(){
+        //Given
+        Todo testTodo1 = new Todo("1239", TodoStatus.DONE, "Schuhe kaufen", "Beim Schuhladen", "1");
+
+        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
+        TodoService testTodoService = new TodoService(testTodoRepository);
+
+        //When
+        Mockito.when(testTodoRepository.findTodoById("1239")).thenReturn(testTodo1);
+
+        //Then
+        Assertions.assertThat(testTodoService.getTodo("1239")).isEqualTo(testTodo1);
+    }
+
+    //löschen
+
+    @Test
+    void shouldDeleteOneTodo(){
+        //Given
+        Todo testTodo1 = new Todo("1239", TodoStatus.DONE, "Schuhe kaufen", "Beim Schuhladen", "1");
+
+        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
+        TodoService testTodoService = new TodoService(testTodoRepository);
+
+        //When
+        testTodoService.delete("1239");
+        //Then
+        verify(testTodoRepository).deleteById("1239");
+    }
+
+    //change next
+
+    @Test
+    void shouldChangeStatusNext(){
+        //Given
+        Todo testTodo1 = new Todo("1239", TodoStatus.IN_PROGRESS, "Schuhe kaufen", "Beim Schuhladen", "1");
+        Todo expectedTestTodo1 = new Todo("1239", TodoStatus.DONE, "Schuhe kaufen", "Beim Schuhladen", "1");
+
+        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
+        TodoService testTodoService = new TodoService(testTodoRepository);
+
+        //When
+        testTodoService.changeNext(testTodo1);
+
+        //Then
+        verify(testTodoRepository).save(expectedTestTodo1);
+    }
+
+    //change prev
+
+    @Test
+    void shouldChangeStatusPrev(){
+        //Given
+        Todo testTodo1 = new Todo("1239", TodoStatus.IN_PROGRESS, "Schuhe kaufen", "Beim Schuhladen", "1");
+        Todo expectedTestTodo1 = new Todo("1239", TodoStatus.OPEN, "Schuhe kaufen", "Beim Schuhladen", "1");
+
+        TodoRepository testTodoRepository = Mockito.mock(TodoRepository.class);
+        TodoService testTodoService = new TodoService(testTodoRepository);
+
+        //When
+        testTodoService.changePrev(testTodo1);
+
+        //Then
+        verify(testTodoRepository).save(expectedTestTodo1);
+    }
 
 }

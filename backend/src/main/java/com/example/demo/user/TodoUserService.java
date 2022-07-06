@@ -13,7 +13,9 @@ public class TodoUserService {
     private final TodoUserRepo todoUserRepo;
     private final PasswordEncoder passwordEncoder;
 
-    public void createUser(TodoUser todoUser) {
+    public void createUser(UserCreationData userCreationData) {
+        if(userCreationData.getUsername()==null || userCreationData.getUsername().isBlank()) throw new IllegalArgumentException("Leerer Username, du Vogel.");
+        TodoUser todoUser = new TodoUser(userCreationData.getUsername(), userCreationData.getPassword());
         todoUser.setPassword(passwordEncoder.encode(todoUser.getPassword()));
         todoUser.setRole("user");
         todoUserRepo.save(todoUser);

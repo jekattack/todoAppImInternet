@@ -26,7 +26,7 @@ class TodoControllerTest {
 //    @Test
 //    void shouldReturnGivenTodo(){
 //        //Given
-//        Todo todo = new Todo("1236", TodoStatus.IN_PROGRESS, "Wäsche waschen", "Kleidung säubern");
+//        Todo todo = new Todo("1236", TodoStatus.IN_PROGRESS, "Wäsche waschen", "Kleidung säubern", "1");
 //        when(testTodoService.getTodo(todo.getId())).thenReturn(todo);
 //
 //        TodoController todoController = new TodoController(testTodoService);
@@ -37,7 +37,7 @@ class TodoControllerTest {
 //        //Then
 //        assertThat(actual).isEqualTo(todo);
 //    }
-
+//
 //    @Test
 //    void shouldRunAddTodo(){
 //        //Given

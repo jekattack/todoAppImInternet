@@ -2,6 +2,7 @@ package com.example.demo.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -14,8 +15,15 @@ public class TodoUserController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@RequestBody TodoUser todoUser){
-        todoUserService.createUser(todoUser);
+    public ResponseEntity<Void> createUser(@RequestBody UserCreationData userCreationData){
+        try {
+            todoUserService.createUser(userCreationData);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (IllegalArgumentException e1) {
+            return ResponseEntity.badRequest().build();
+        } catch (Exception e2) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
 

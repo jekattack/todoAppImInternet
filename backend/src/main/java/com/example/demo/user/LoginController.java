@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.HashMap;
 
 @CrossOrigin
@@ -32,5 +33,12 @@ public class LoginController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<LoginResponse> refreshToken(Principal principal) {
+        TodoUser user = userService.findByUsername(principal.getName()).orElseThrow();
+        String jwt = jwtService.createToken(new HashMap<>(), user.getId());
+        return ResponseEntity.ok(new LoginResponse(jwt));
     }
 }
