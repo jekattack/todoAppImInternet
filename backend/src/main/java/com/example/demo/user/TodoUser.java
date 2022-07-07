@@ -23,6 +23,7 @@ public class TodoUser {
     @Indexed(unique = true)
     private String username;
     private String password;
+    private long gitHubUserId;
     private String role;
 
 }

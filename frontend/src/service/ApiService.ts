@@ -42,3 +42,17 @@ export function login(username: string, password: string){
 export function register(username: string, password: string){
     return axios.post("/api/user", {username: username, password: password}, {headers: {Authorization: `Bearer ${localStorage.getItem('jwt')}`}});
 }
+
+export function getUsername() {
+    return axios.get("/api/user", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+    })
+        .then((response: AxiosResponse<string>) => response.data)
+}
+
+export function gitHubCallback(code: string) {
+    return axios.get(`/api/oauth${code}`)
+        .then((response: AxiosResponse<LoginResponse>) => response.data)
+}

@@ -5,6 +5,8 @@ import EditPage from "./routes/EditPage";
 import LoginPage from "./public/LoginPage";
 import RegisterPage from "./public/RegisterPage";
 import Header from "./components/Header";
+import OauthCallbackPage from "./components/OauthCallbackPage";
+import UserDetailsPage from "./components/UserDetailsPage"
 
 function App() {
   return (
@@ -14,8 +16,10 @@ function App() {
               <Routes>
                   <Route path="/" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/userdetails" element={<UserDetailsPage/>} />
                   <Route path="/kanban/" element={<MainPage />} />
                   <Route path="/kanban/:id" element={<EditPage />} />
+                  <Route path={"/oauth"} element={<OauthCallbackPage />} />
               </Routes>
           </BrowserRouter>
       </div>

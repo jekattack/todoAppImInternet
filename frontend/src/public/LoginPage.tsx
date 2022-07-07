@@ -27,7 +27,12 @@ export default function LoginPage(){
                     <input type={"submit"} value={"Login"}/>
                 </div>
             </form>
-            <a href={"/register"}>Register now!</a>
+            <div>
+                <a href={"https://github.com/login/oauth/authorize?client_id=764c6d47836895038b5d"}>Click to login with Github</a>
+            </div>
+            <div>
+                <a href={"/register"}>Register now!</a>
+            </div>
         </div>
     )
 

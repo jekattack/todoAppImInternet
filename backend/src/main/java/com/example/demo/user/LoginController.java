@@ -3,7 +3,6 @@ package com.example.demo.user;
 
 import com.example.demo.security.JWTService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,7 +37,7 @@ public class LoginController {
     @PostMapping("/refresh")
     public ResponseEntity<LoginResponse> refreshToken(Principal principal) {
         TodoUser user = userService.findByUsername(principal.getName()).orElseThrow();
-        String jwt = jwtService.createToken(new HashMap<>(), user.getId());
-        return ResponseEntity.ok(new LoginResponse(jwt));
+        String token = jwtService.createToken(new HashMap<>(), user.getId());
+        return ResponseEntity.ok(new LoginResponse(token));
     }
 }

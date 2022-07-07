@@ -55,7 +55,7 @@ class TodoApplicationTest {
 
 
         //Create new Todoitem
-        Todo firstTodoInput = new Todo("Gewichte heben", "Mit den Füßen");
+        Todo firstTodoInput = Todo.builder().task("Gewichte heben").description("Mit den Füßen").build();
         ResponseEntity<Void> firstTodoPostResponse = testRestTemplate.exchange(
                 "/api/kanban",
                 HttpMethod.POST,
@@ -204,7 +204,7 @@ class TodoApplicationTest {
                 new HttpEntity<>(createHeaders(token)),
                 Todo[].class
         );
-        Assertions.assertThat(emptyGetAllResponse.getBody()).isEmpty();
+        Assertions.assertThat(emptyGetAllResponse2.getBody()).isEmpty();
 
     }
 

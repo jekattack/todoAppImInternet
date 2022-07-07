@@ -1,5 +1,6 @@
 package com.example.demo.user;
 
+import com.example.demo.security.oauth.GitHubUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,18 @@ public class TodoUserService {
         todoUser.setRole("user");
         todoUserRepo.save(todoUser);
     }
+
+    public TodoUser createOrGet(GitHubUser gitHubUser) {
+        return todoUserRepo.findByGitHubUserId(gitHubUser.getId())
+                .orElseGet(() -> {
+                    TodoUser user = new TodoUser();
+                    user.setGitHubUserId(gitHubUser.getId());
+                    user.setUsername(gitHubUser.getLogin());
+                    user.setRole("user");
+                    return todoUserRepo.save(user);
+                });
+    }
+
 
     public Optional<TodoUser> findByUsername(String username) {
         return todoUserRepo.findByUsername(username);
