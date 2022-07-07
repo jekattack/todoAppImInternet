@@ -28,7 +28,7 @@ export default function LoginPage(){
                 </div>
             </form>
             <div>
-                <a href={"https://github.com/login/oauth/authorize?client_id=764c6d47836895038b5d"}>Click to login with Github</a>
+                <a href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}`}>Click to login with Github</a>
             </div>
             <div>
                 <a href={"/register"}>Register now!</a>

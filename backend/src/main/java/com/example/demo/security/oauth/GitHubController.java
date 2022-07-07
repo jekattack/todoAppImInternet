@@ -61,7 +61,7 @@ public class GitHubController {
 
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", user.getRole());
-        String token = jwtService.createToken(claims, user.getUsername());
+        String token = jwtService.createToken(new HashMap<>(), user.getId());
 
         return new LoginResponse(token);
     }
