@@ -33,7 +33,7 @@ public class GitHubController {
                             TodoUserService todoUserService,
                             JWTService jwtService,
                             @Value("${app.oauth.clientId}") String clientId,
-                            @Value("${app.oauth.clientSecret}")  String clientSecret) {
+                            @Value("${app.oauth.clientSecret}") String clientSecret) {
         this.restTemplate = restTemplate;
         this.todoUserService = todoUserService;
         this.jwtService = jwtService;
