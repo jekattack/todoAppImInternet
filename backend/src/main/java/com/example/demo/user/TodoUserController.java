@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/user")
@@ -24,6 +26,11 @@ public class TodoUserController {
         } catch (Exception e2) {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @GetMapping
+    public String getUsername(Principal principal) {
+        return principal.getName();
     }
 
 

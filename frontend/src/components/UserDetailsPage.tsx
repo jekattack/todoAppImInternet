@@ -14,7 +14,14 @@ export default function UserDetails() {
             .catch(() => nav('/'))
     }, [nav])
 
+    const continueToKanban = () => {
+        nav("/kanban")
+    }
+
     return (
-        <div>Who am I: {username}</div>
+        <div>
+            <div>You are logged in as: {username}</div>
+            <button onClick={continueToKanban}>Continue to Kanban-Board</button>
+        </div>
     )
 }
